@@ -1,0 +1,41 @@
+Notes on the way 
+
+To select the profile 
+aws  --profile NB-RDS-Snapshot
+
+to go to iPython 
+pipenv run ipython
+
+-----
+import boto3
+session = boto3.Session(profile_name='NB-RDS-Snapshot')
+s3 = session.resource('s3')
+
+##list the bucket
+for bucket in s3.buckets.all(): 
+	print(bucket)
+
+## creating  the bucket 
+new_bucket = s3.create_bucket(Bucket='DelThis2019Bucket')  // <== It will throw error since u did not specify the locatiion 
+
+## check the history 
+%history
+
+
+## creating the bucket , now we know that u have to specify the location 
+
+new_bucket = s3.create_bucket(Bucket='DelThis2019Bucket', CreateBucketConfiguration={'LocationConketstraint': 'eu-west-1'})
+🖕️ here we called a function named 'create_bucket' with 2 parameters 'Bucket and CreateBucketConfiguration' , value of Bucket is string and 'CreateBucketConfiguration' is of dictionary with one key 'LocationConketstraint' and and one value 'eu-west-1' 🖕🏿️
+############
+Saving the session 
+
+%s josephsession.py 1-10
+
+from command line using the saved commands
+
+$ pipenv run ipython -i josephsession.py
+
+
+
+
+
